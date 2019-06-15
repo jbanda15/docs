@@ -40,6 +40,17 @@ All SSH Keys and Passwords are stored under the `keys/` top-level path.
 You can embed context property references within the key storage path such as `${job.project}`. See [[page:manual/job-workflows.md#context-variables]].
 
 
+### Force PTY
+
+In some cases, when you start processes in the background using commands or scripts, it is expected that processes will be killed when the ssh session ends.
+If you do not use "Force PTY", the process tree on the remote node could continue running after the ssh session ends.
+
+You can define an always-set-pty node attribute to always use a particular value in a node, for example:
+`<node name = "nodeName" always-set-pty = "true" />`
+
+The property can be configured at the project level, it must be taken into account that the value of the node will overwrite the value configured in the project.
+
+
 ### SCP File Copier
 
 In addition to the general SSH configuration mentioned for in this section, some additional configuration can be done for SCP. 
